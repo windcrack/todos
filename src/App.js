@@ -2,6 +2,7 @@ import './App.css';
 import TodosList from "./components/TodosList";
 import {useState} from "react";
 import Context from "./context";
+import * as dayjs from "dayjs";
 
 function App() {
     const [todos, setTodos] = useState([
@@ -10,7 +11,7 @@ function App() {
             title: 'Test 1',
             descr: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, mollitia?',
             file: 'ничего не добавлено',
-            endTime: Date.now(),
+            endTime: dayjs(Date.now()).hour(14).minute(20).format('HH:mm'),
             completed: false,
         },
     ]);
@@ -22,8 +23,6 @@ function App() {
         event.preventDefault();
         let data = event.target.files[0];
         setFile(data);
-        console.log(data);
-        console.log(file);
     }
 
     const addTodo = () =>{
@@ -33,7 +32,7 @@ function App() {
                 id: Date.now(),
                 title: text,
                 descr: textDescr,
-                file: file[0].name || 'ничего не добавлено',
+                file: file.name || 'ничего не добавлено',
                 endTime: Date.now(),
                 completed: false,
             }

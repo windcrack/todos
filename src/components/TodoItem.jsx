@@ -1,12 +1,13 @@
 import '../App.css';
 import {useContext, useState} from "react";
 import Context from "../context";
+import dayjs from "dayjs";
 
 function TodoItem ({el}){
     const {remove} = useContext(Context);
     const [checked, setChecked] = useState();
     const newClass = [];
-    if (checked){
+    if (checked || dayjs().format('HH:mm') >= el.endTime){
         el.completed = true;
         newClass.push('done');
     }
