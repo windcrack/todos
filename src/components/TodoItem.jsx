@@ -1,10 +1,8 @@
 import '../App.css';
-import {useContext, useState} from "react";
-import Context from "../context";
+import {useState} from "react";
 import dayjs from "dayjs";
 
-function TodoItem ({el}){
-    const {remove} = useContext(Context);
+function TodoItem ({el, remove}){
     const [checked, setChecked] = useState();
     const newClass = [];
     if (checked || dayjs().format('HH:mm') >= el.endTime){
@@ -19,7 +17,7 @@ function TodoItem ({el}){
             <p>{el.descr}</p>
             <div>{el.file}</div>
             <time>{el.endTime}</time>
-            <button onClick={remove.bind(null, el.id)}>&#10006;</button>
+            <button onClick={() => remove(el.id)}>&#10006;</button>
         </li>
     )
 }
